@@ -7,7 +7,7 @@ import {
   TableBody,
 } from "@mui/material";
 
-const TableComponent = ({ currencyData }) => {
+const TableComponent = ({ currencyRedux }) => {
   return (
     <TableContainer
       sx={{
@@ -23,7 +23,7 @@ const TableComponent = ({ currencyData }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {currencyData.map((row) => (
+          {currencyRedux.map((row) => (
             <TableRow
               key={row.ccy}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -31,8 +31,8 @@ const TableComponent = ({ currencyData }) => {
               <TableCell align="center" component="th" scope="row">
                 {row.ccy}/{row.base_ccy}
               </TableCell>
-              <TableCell align="center">{row.sale}</TableCell>
               <TableCell align="center">{row.buy}</TableCell>
+              <TableCell align="center">{row.sale}</TableCell>
             </TableRow>
           ))}
         </TableBody>

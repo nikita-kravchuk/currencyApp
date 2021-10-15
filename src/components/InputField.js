@@ -6,32 +6,20 @@ import {
   Container,
 } from "@mui/material";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
-import { useState } from "react";
+import {  useState } from "react";
 
-const InputField = ({ currencyRedux ,allCurrencies }) => {
-  const [option, setOption] = useState("");
-  const [option2, setOption2] = useState("");
-  const [fieldVal, setFieldVal] = useState(0);
-
-  console.log(fieldVal);
-
-  const handleChange = (event) => {
-    setOption(event.target.value);
-  };
-
-  const handleChange2 = (event) => {
-    setOption2(event.target.value);
-  };
+const InputField = ({ allCurrencies, handleCurrencyChange,
+  amount,
+  handleAmountChange, handleCurrencyToChange,
+  amountTo,
+  handleAmountToChange, }) => {
+  const [option, setOption] = useState(allCurrencies[0]);
+  const [option2, setOption2] = useState(allCurrencies[1]);
 
   const flip = () => {
     setOption(option2);
     setOption2(option);
   };
-
-  // const convert = () => {
-  //   let rate = currencyData.buy;
-  //   setSecondFieldVal(rate * firstFieldVal);
-  // };
 
   return (
     <Container
@@ -48,17 +36,16 @@ const InputField = ({ currencyRedux ,allCurrencies }) => {
         id="standard-basic"
         label="Amount"
         variant="standard"
-        value={fieldVal}
-        onChange={(e) => setFieldVal(e.target.value)}
+        value={amount}
+          onChange={handleAmountChange}
       />
       <FormControl variant="standard">
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
           value={option}
-          onChange={handleChange}
+          onChange={handleCurrencyChange}
           label="Currency"
-          defaultValue={allCurrencies[0]}
         >
           {allCurrencies.map((currencies) => (
             <MenuItem key={currencies} value={currencies}>
@@ -76,17 +63,16 @@ const InputField = ({ currencyRedux ,allCurrencies }) => {
         id="standard-basic"
         label="Amount"
         variant="standard"
-        value={fieldVal}
-        onChange={(e) => setFieldVal(e.target.value)}
+        value={amountTo}
+          onChange={handleAmountToChange}
       />
       <FormControl variant="standard">
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
           value={option2}
-          onChange={handleChange2}
+          onChange={handleCurrencyToChange}
           label="Currency"
-          defaultValue={allCurrencies[1]}
         >
           {allCurrencies.map((currencies) => (
             <MenuItem key={currencies} value={currencies}>
